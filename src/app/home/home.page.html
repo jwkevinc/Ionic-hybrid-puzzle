@@ -1,12 +1,38 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      <ion-icon ios="ios-arrow-dropleft-circle" md="md-arrow-dropleft-circle"></ion-icon> Level {{level}}
+      This Round: {{correctCount}} | All Time: {{recordCount}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+
+  <div *ngIf="!alive">
+    <p> Game Over </p>
+    <ion-button (click)="restart()"> Restart </ion-button>
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Time: {{timer/1000}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{question.string}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="square red" (click)="clickSquare('red')">
+        </ion-col>
+        <ion-col class="square yellow" (click)="clickSquare('yellow')">
+        </ion-col>
+        <ion-col class="square green" (click)="clickSquare('green')">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>
